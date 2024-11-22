@@ -1,0 +1,18 @@
+<form method="POST">
+  <input type="text" name="query" placeholder="Search for recipes..." required>
+  <button type="submit">Search</button>
+</form>
+
+<div class="recipes">
+  {% if recipes %}
+      {% for recipe in recipes %}
+          <div class="recipe">
+              <h3>{{ recipe.title }}</h3>
+              <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+              <a href="{{ url_for('users.recipe_detail', recipe_id=recipe.id) }}">View Details</a>
+          </div>
+      {% endfor %}
+  {% else %}
+      <p>No recipes found.</p>
+  {% endif %}
+</div>
