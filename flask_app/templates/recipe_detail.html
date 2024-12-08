@@ -1,0 +1,49 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% if error_msg %}
+<b class="text-red-400">
+  {{ error_msg }}
+</b>
+{% endif %} 
+
+
+
+{# Display card for the recipe details #}
+<div>
+  <div class="recipe">
+    <h1>{{ recipe.title }}</h1>
+    <img alt="alt text" src="{{ recipe.image }}" />
+    <p>Cook: {{ recipe.readyInMinutes }} minutes | Servings: {{ recipe.servings }} | Rating: {{ recipe.score }}/100</p>
+  </div>
+  <div class="summary">
+    <p>{{ recipe.summary | safe }}</p>
+  </div>
+
+  <div class="ing">
+      <h5>Ingredients:</h5>
+      {% for item in recipe.ingredients %}
+        <label>
+          <input type="checkbox" name="{{ item }}">
+          {{ item }}
+        </label>
+        <br>
+      {% endfor %}
+  </div>
+  
+  
+  <div class="steps">
+    <h5>Instructions: </h5>
+    <ol>
+      {% if recipe.instructions %}
+        {% for number, step in recipe.instructions.items() %}
+        <li>{{ number }}. {{ step }}</li>
+        {% endfor %}
+      {% endif %}
+    </ol>
+  </div>
+  
+</div>
+
+{% endblock content %}
+
