@@ -1117,6 +1117,7 @@ html {
   padding-bottom: 0.5rem;
   font-weight: 700;
   transition-duration: 300ms;
+  color: white;
 }
 
 .review-button:hover {
@@ -1251,19 +1252,7 @@ html {
 }
 
 .reviews {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .reviews {
-    width: 66.666667%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .reviews {
-    width: 33.333333%;
-  }
+  width: 98.5%;
 }
 
 .reviews-title {
@@ -1310,6 +1299,7 @@ html {
   padding-right: 0.625rem;
   font-weight: 700;
   transition-duration: 300ms;
+  color: white;
 }
 
 .review-commenter:hover {
@@ -1326,7 +1316,7 @@ html {
   line-height: 1.25rem;
   font-weight: 300;
   --tw-text-opacity: 1;
-  color: rgb(212 212 212 / var(--tw-text-opacity));
+  color: white;
 }
 
 .review-date {
@@ -1508,4 +1498,52 @@ html {
   .lg\:w-1\/3 {
     width: 33.333333%;
   }
+}
+
+label {
+  color: white;
+}
+
+.star-rating {
+  display: flex;
+  gap: 10px;
+  direction: rtl;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-right: 5px;
+}
+
+.star-rating label:hover,
+.star-rating input:checked ~ label {
+  color: gold;
+}
+
+.star-rating input:checked {
+  color: gold;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+}
+
+.star-filled {
+  color: #fbbf24;
+}
+
+.star-empty {
+  color: #fbbf24;
+}
+
+.ing label {
+  color: black;
 }

@@ -3,8 +3,8 @@ from io import BytesIO
 from flask import Blueprint, render_template, url_for, redirect, request, flash
 from flask_login import current_user
 from .. import recipe_client
-from ..forms import MovieReviewForm, SearchForm
-from ..models import User, Review
+from ..forms import RecipeReviewForm, SearchForm
+from ..models import User, RecipeReview
 from ..utils import current_time
 
 recipes = Blueprint("recipes", __name__)
@@ -41,29 +41,43 @@ def query_results(query):
 
 @recipes.route("/recipes/<recipe_id>", methods=["GET", "POST"])
 def recipe_detail(recipe_id):
+    """Displays recipe details and allows users to leave reviews."""
     try:
-        result = recipe_client.get_recipe(recipe_id)
+        result = recipe_client.get_recipe(recipe_id)  
     except ValueError as e:
         return render_template("recipe_detail.html", error_msg=str(e))
-    
-    form = MovieReviewForm()
+
+    form = RecipeReviewForm()
     if form.validate_on_submit():
-        review = Review(
+        review = RecipeReview(
             commenter=current_user._get_current_object(),
             content=form.text.data,
             date=current_time(),
-            imdb_id=recipe_id,
-            movie_title=result.title,
+            recipe_id=recipe_id,
+            recipe_title=result.title,
+            rating=form.rating.data
         )
+
+        review.image = get_b64_img(review.commenter.username)
         review.save()
 
         return redirect(request.path)
 
-    reviews = Review.objects(imdb_id=recipe_id)
+    reviews = RecipeReview.objects(recipe_id=recipe_id)
 
-    return render_template(
-        "recipe_detail.html", recipe=result
-    )
+    return render_template("recipe_detail.html", form=form, recipe=result, reviews=reviews)
+
+@recipes.route("/user/<username>")
+def user_detail(username):
+    """Displays user details and their reviews."""
+    user = User.objects(username=username).first()
+    if not user:
+        error = f'User "{username}" doesn\'t exist.'
+        return render_template("user_detail.html", error=error)
+    reviews = RecipeReview.objects(commenter=user)
+    image = get_b64_img(user.username)
+
+    return render_template("user_detail.html", user=user, image=image, reviews=reviews)
 
 
 

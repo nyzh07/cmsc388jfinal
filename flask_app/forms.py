@@ -3,7 +3,7 @@ from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from werkzeug.utils import secure_filename
-from wtforms import StringField, SubmitField, TextAreaField, PasswordField
+from wtforms import StringField, SubmitField, TextAreaField, PasswordField, RadioField
 from wtforms.validators import (
     InputRequired,
     Length,
@@ -23,10 +23,11 @@ class SearchForm(FlaskForm):
     submit = SubmitField("Search")
 
 
-class MovieReviewForm(FlaskForm):
+class RecipeReviewForm(FlaskForm):
     text = TextAreaField(
         "Comment", validators=[InputRequired(), Length(min=5, max=500)]
     )
+    rating = RadioField('Rating', choices=[(1, '★'), (2, '★★'), (3, '★★★'), (4, '★★★★'), (5, '★★★★★')], coerce=int)
     submit = SubmitField("Enter Comment")
 
 
