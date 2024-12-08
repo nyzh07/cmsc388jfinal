@@ -1,3 +1,4 @@
+
 {% extends "header.html" %}
 
 {% block content %}
@@ -22,6 +23,7 @@
             <tr>
                 <th style="border: 1px solid #fff4">Date</th>
                 <th style="border: 1px solid #fff4">Recipe</th>
+                <th style="border: 1px solid #fff4">Rating</th>
                 <th style="border: 1px solid #fff4">Content</th>
             </tr>
         </thead>
@@ -30,6 +32,7 @@
                 <tr>
                     <td style="border: 1px solid #fff4">{{ review.date }}</td>
                     <td style="border: 1px solid #fff4">{{ review.recipe_title }}</td>
+                    <td style="border: 1px solid #fff4">{{ review.rating }} ⭐</td>
                     <td style="border: 1px solid #fff4">{{ review.content }}</td>
                 </tr>
             {% endfor %}
@@ -37,4 +40,14 @@
     </table>
 </div>
 
+<div class="container mx-auto w-full md:w-2/3 lg:w-1/3">
+    <h2 class="text-4xl font-bold opacity-50 my-4">{{ user.username }}'s Recipes</h2>
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                <b>{{ recipe.title }}</b>: {{ recipe.description }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

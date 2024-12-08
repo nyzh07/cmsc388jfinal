@@ -5,7 +5,7 @@ from io import BytesIO
 from .. import bcrypt
 from werkzeug.utils import secure_filename
 from ..forms import RegistrationForm, LoginForm, UpdateUsernameForm, UpdateProfilePicForm
-from ..models import User
+from ..models import User, RecipeReview
 
 users = Blueprint("users", __name__)
 
@@ -82,3 +82,24 @@ def account():
                         update_username_form=update_username_form,
                         update_profile_pic_form=update_profile_pic_form,
                         image=image)
+
+
+@users.route("/<username>", methods=["GET"])
+def user_detail(username):
+    # Fetch user by username
+    user = User.objects(username=username).first()
+    if not user:
+        return render_template("user_detail.html", error="User not found")
+
+    # reviews by user
+    reviews = RecipeReview.objects(commenter=user)
+
+    # recipes added by the user
+    # recipes = Recipe.objects(author=user)
+
+    return render_template(
+        "user_detail.html",
+        user=user,
+        reviews=reviews,
+        recipes=[]
+    )
