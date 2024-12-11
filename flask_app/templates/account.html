@@ -55,6 +55,6 @@
 
 <div class="flex justify-center">
     {# TODO: Link to see all of the current user's reviews. #}
-    <a href="{{ url_for('movies.user_detail', username=current_user.username) }}" class="review-button">All Reviews</a>
+    <a href="{{ url_for('recipes.user_detail', username=current_user.username) }}" class="review-button">All Reviews</a>
 </div>
 {% endblock %}
