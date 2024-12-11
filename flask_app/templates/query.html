@@ -1,19 +1,14 @@
 {% extends "header.html" %} {% block content %}
 
-{% if error_msg %}
-  <b class="text-red-400">
-    {{ error_msg }}
-  </b>
-{% endif %}
-
 <div class="results-container">
-  <div class="decoration-container"><div class="decoration"></div></div>
+  {% if error_msg %}
+  <div class="error" role="alert">
+    {{ error_msg }}
+  </div>
+  {% endif %}
   {% for result in results %}
-  <a 
-    href="{{ url_for('recipes.recipe_detail', recipe_id=result.id) }}"
-    class="group movie-card"
-  >
-    <img src="{{ result.image }}" class="movie-card-img" alt="missing" />
+  <a href="{{ url_for('recipes.recipe_detail', recipe_id=result.id) }}" class="group movie-card">
+    <img src="{{ result.image }}" class="movie-card-img" alt="missing image" />
     <h5 class="movie-card-content"> {{ result.title }} </h5>
   </a>
   {% endfor %}
