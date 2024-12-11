@@ -545,6 +545,7 @@ video {
 }
 
 .container {
+  margin-top: 1rem;
   width: 100%;
 }
 
@@ -1338,7 +1339,6 @@ html {
 }
 
 .review-form {
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -1353,7 +1353,6 @@ html {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  --tw-text-opacity: 1;
   color: rgb(100 100 100 / var(--tw-text-opacity));
 }
 
@@ -1512,7 +1511,7 @@ html {
 }
 
 label {
-  color: white;
+  color: black;
 }
 
 .star-rating {
