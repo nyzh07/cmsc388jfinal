@@ -4,7 +4,9 @@
   <form class="searchbar" action="/" method="POST">
     {{ form.csrf_token }}
     {{ form.search_query(class="form-control", placeholder="Find a recipe") }}
-
+    {{ form.submit(class="form-button") }}
+  </form>
+  <div class="results-container">
     {% if form.search_query.errors %}
     <div class="error" role="alert">
       {% for error in form.search_query.errors %}
@@ -13,7 +15,18 @@
     </div>
     {% endif %}
 
-    {{ form.submit(class="form-button") }}
-  </form>
+    {% if error_msg %}
+    <div class="error" role="alert">
+      {{ error_msg }}
+    </div>
+    {% endif %}
+
+    {% for result in results %}
+    <a href="{{ url_for('recipes.recipe_detail', recipe_id=result.id) }}" class="group movie-card">
+      <img src="{{ result.image }}" class="movie-card-img" alt="missing image" />
+      <h5 class="movie-card-content"> {{ result.title }} </h5>
+    </a>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}

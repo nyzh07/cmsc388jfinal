@@ -545,6 +545,7 @@ video {
 }
 
 .container {
+  margin-top: 1rem;
   width: 100%;
 }
 
@@ -788,12 +789,7 @@ video {
 
 .text-blue-400 {
   --tw-text-opacity: 1;
-  color: rgb(96 165 250 / var(--tw-text-opacity));
-}
-
-.text-blue-800 {
-  --tw-text-opacity: 1;
-  color: rgb(7 110 237 / var(--tw-text-opacity));
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 .text-neutral-500 {
@@ -847,11 +843,12 @@ html {
   width: 100%;
   /* Optional: adjust height to viewport */
   text-align: center;
-  background-color: #525252;
+  background-color: #313131;
   /* Center text inside the elements */
 }
 
 .recipe img {
+  color: rgb(122, 19, 19);
   max-width: 100%;
   /* Ensure the image is responsive */
   /* height: auto; */
@@ -975,8 +972,8 @@ html {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1.5rem;
-  margin-bottom: 3rem;
-  width: 30rem;
+  margin-bottom: 1.5rem;
+  /* width: 30rem; */
   text-align: center;
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -988,7 +985,6 @@ html {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: -0.5rem;
   display: flex;
   width: -moz-fit-content;
   width: fit-content;
@@ -998,6 +994,7 @@ html {
 }
 
 .error {
+  margin-bottom: 0.5rem;
   border-radius: 0.5rem;
   border-width: 1px;
   --tw-border-opacity: 1;
@@ -1011,7 +1008,7 @@ html {
 
 .form-control {
   color: rgb(70, 70, 70);
-  width: 24rem;
+  width: 22rem;
   border-radius: 9999px;
   border-width: 2px;
   border-color: rgba(221, 221, 221, 0.5);
@@ -1381,7 +1378,7 @@ html {
   gap: 1rem;
   border-radius: 0.75rem;
   --tw-bg-opacity: 1;
-  background-color: #525252;
+  background-color: #383838;
   padding: 1rem;
   padding-top: 0.5rem;
 }
@@ -1434,6 +1431,7 @@ html {
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1446,7 +1444,7 @@ html {
 
 @media (min-width: 1536px) {
   .results-container {
-    margin-top: -3.5rem;
+    /* margin-top: -3.5rem; */
   }
 }
 
@@ -1515,7 +1513,7 @@ html {
 
 .hover\:text-blue-400:hover {
   --tw-text-opacity: 1;
-  color: rgb(96 165 250 / var(--tw-text-opacity));
+  color: rgb(37 99 235 / var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {

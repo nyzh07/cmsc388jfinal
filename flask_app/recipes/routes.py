@@ -2,6 +2,7 @@ import base64,io
 from io import BytesIO
 from flask import Blueprint, render_template, url_for, redirect, request, flash
 from flask_login import current_user
+from flask_app.cache import read_search_cache
 from .. import recipe_client
 from ..forms import RecipeReviewForm, SearchForm
 from ..models import User, RecipeReview
@@ -23,20 +24,14 @@ def index():
     form = SearchForm()
 
     if form.validate_on_submit():
-        return redirect(url_for("recipes.query_results", query=form.search_query.data))
+        try:
+            results = recipe_client.search(form.search_query.data)
+            return render_template("index.html", form=form, results=results["results"])
+        except Exception as e:
+            return render_template("index.html", form=form, error_msg="Search Failed")
 
-    return render_template("index.html", form=form)
-
-
-@recipes.route("/search-results/<query>", methods=["GET"])
-def query_results(query):
-    try:
-        results = recipe_client.search(query)
-        
-    except ValueError as e:
-        return render_template("query.html", error_msg=str(e))
-
-    return render_template("query.html", results=results["results"])
+    default_results = read_search_cache().response
+    return render_template("index.html", form=form, results=default_results["results"])
 
 
 @recipes.route("/recipes/<recipe_id>", methods=["GET", "POST"])
@@ -44,8 +39,10 @@ def recipe_detail(recipe_id):
     """Displays recipe details and allows users to leave reviews."""
     try:
         result = recipe_client.get_recipe(recipe_id)  
-    except ValueError as e:
-        return render_template("recipe_detail.html", error_msg=str(e))
+        if not result:
+            return render_template("404.html"), 404
+    except Exception as e:
+        return render_template("error.html", error_msg=str(e))
 
     form = RecipeReviewForm()
     if form.validate_on_submit():
@@ -72,8 +69,7 @@ def user_detail(username):
     """Displays user details and their reviews."""
     user = User.objects(username=username).first()
     if not user:
-        error = f'User "{username}" doesn\'t exist.'
-        return render_template("user_detail.html", error=error)
+        return render_template("404.html"), 404
     reviews = RecipeReview.objects(commenter=user)
     image = get_b64_img(user.username)
 
