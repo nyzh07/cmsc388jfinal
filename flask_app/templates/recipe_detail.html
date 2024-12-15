@@ -47,6 +47,21 @@
   <div class="reviews">
     <h1 class="reviews-title"> Reviews
       <small class="reviews-count"> {{ reviews | length }} reviews </small>
+      {# Calculate and display the average rating as stars next to the review count #}
+      <small class="average-rating">
+        {% if reviews | length > 0 %}
+          {% set total_rating = reviews | map(attribute='rating') | sum %}
+          {% set average_rating = total_rating / (reviews | length) %}
+          {% set rounded_rating = average_rating | round %}
+          {% for i in range(6, 1, -1) %}
+            {% if i <= (rounded_rating or 0) %}
+              <span class="star-empty">&#9734;</span>
+            {% else %}
+              <span class="star-filled">&#9733;</span>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </small>
     </h1>
     <ul class="review-container">
       {% for review in reviews %}
@@ -60,7 +75,7 @@
             <div class="review-rating">
               {% for i in range(6, 1, -1) %}
                 {% if i <= (review.rating or 0) %}
-                  <span class="star-empty">&#9734;</span>
+                  <span>&#9734;</span>
                 {% else %}
                   <span class="star-filled">&#9733;</span>  
                 {% endif %}

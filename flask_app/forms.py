@@ -27,7 +27,7 @@ class RecipeReviewForm(FlaskForm):
     text = TextAreaField(
         "Comment:", validators=[InputRequired(), Length(min=5, max=500)]
     )
-    rating = RadioField('Rating', choices=[(1, '★'), (2, '★★'), (3, '★★★'), (4, '★★★★'), (5, '★★★★★')], coerce=int)
+    rating = RadioField('Rating', choices=[(1, '★'), (2, '★★'), (3, '★★★'), (4, '★★★★'), (5, '★★★★★')], coerce=int, validators=[InputRequired()])
     submit = SubmitField("Enter Comment")
 
 
