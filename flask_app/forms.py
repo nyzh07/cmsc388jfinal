@@ -33,10 +33,10 @@ class RecipeReviewForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     username = StringField(
-        "Username", validators=[InputRequired(), Length(min=1, max=40)]
+        "Username", validators=[InputRequired(), Length(min=3, max=25)]
     )
     email = StringField("Email", validators=[InputRequired(), Email()])
-    password = PasswordField("Password", validators=[InputRequired()])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=3, max=25)])
     confirm_password = PasswordField(
         "Confirm Password", validators=[InputRequired(), EqualTo("password")]
     )
