@@ -62,7 +62,7 @@ class LoginForm(FlaskForm):
 
 # TODO: implement
 class UpdateUsernameForm(FlaskForm):
-    username = StringField('New Username', validators=[InputRequired(), Length(min=1, max=40)])
+    username = StringField('New Username', validators=[InputRequired(), Length(min=3, max=25)])
     submit_username = SubmitField('Update Username')
 
     def validate_username(self, username):
