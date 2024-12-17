@@ -26,12 +26,12 @@ class RecipeClient(object):
     def __init__(self, api_key):
         self.sess = requests.Session()
         self.api_key = api_key
-        self.base_url = f"https://api.spoonacular.com/recipes/complexSearch?apiKey={api_key}&query="
+        self.base_url = f"https://api.spoonacular.com/recipes/complexSearch?apiKey={api_key}&addRecipeInstructions=True&query="
         self.base_id_url = f"https://api.spoonacular.com/recipes/"
 
     def search(self, search_string):
         # breakpoint()
-        search_url = self.base_url + search_string + f"&number=10"
+        search_url = self.base_url + search_string + f"&titleMatch={search_string}&number=30"
         try:
             resp = self.sess.get(search_url, timeout=10)  # Add a timeout
             resp.raise_for_status()  # Raise an exception for HTTP errors
@@ -78,6 +78,6 @@ if __name__ == "__main__":
 
     client = RecipeClient(os.environ.get("API_KEY"))
     recipes = client.search("pasta")
-    find = client.get_recipe(716429)
+    # find = client.get_recipe(716429)
 
 
