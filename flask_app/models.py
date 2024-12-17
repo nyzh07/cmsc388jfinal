@@ -24,11 +24,11 @@ class User(db.Document, UserMixin):
 
 
 # TODO: implement fields
-class Review(db.Document):
-    commenter = ReferenceField(User, required=True)
-    content = StringField(required=True)
-    date = StringField(default=datetime)
-    imdb_id = StringField(required=True)
-    movie_title = StringField(required=True)
+class RecipeReview(db.Document):
+    commenter = db.ReferenceField(User, required=True)
+    content = db.StringField(required=True, min_length=5, max_length=500)
+    date = db.StringField(default=datetime.now().strftime("%B %d, %Y at %H:%M:%S"))
+    recipe_id = db.StringField(required=True, max_length=50)
+    recipe_title = db.StringField(required=True, min_length=1, max_length=100)
     image = db.StringField()
-    #Uncomment when other fields are ready for review pictures
+    rating = db.IntField(min_value=1, max_value=5, required=True)
