@@ -1597,3 +1597,62 @@ html {
   text-align: center; 
   padding: 0.25rem;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination a {
+  display: block;
+  padding: 8px 16px;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: black;
+  color: white;
+}
+
+.pagination .active a {
+  background-color: #007bff;
+  color: white;
+  pointer-events: none;
+  font-weight: bold;
+}
+
+.pagination .disabled a {
+  background-color: #f5f5f5;
+  color: #aaa;
+  pointer-events: none;
+  border-color: #ddd;
+}
+
+.pagination .ellipsis a {
+  cursor: default;
+  color: #aaa;
+}
+
+.pagination span {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .pagination a {
+    padding: 6px 12px;
+  }
+
+  .pagination {
+    margin: 15px 0;
+  }
+}
