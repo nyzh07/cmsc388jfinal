@@ -1,0 +1,28 @@
+{% extends "header.html" %} 
+{% block content %}
+
+<div class="results-container">
+  {% if error_msg %}
+  <div class="error" role="alert">
+    {{ error_msg }}
+  </div>
+  {% endif %}
+  {% for result in results %}
+  <a href="{{ url_for('recipes.recipe_detail', recipe_id=result.id) }}" class="group movie-card">
+    <img src="{{ result.image }}" class="movie-card-img" alt="missing image" />
+    <h5 class="movie-card-content"> {{ result.title }} </h5>
+  </a>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if page > 1 %}
+    <a href="{{ url_for('recipes.query_results', query=query, page=page-1) }}">Previous</a>
+  {% endif %}
+    <span>Page {{ page }} of {{ total_pages }}</span>
+  {% if page < total_pages %}
+    <a href="{{ url_for('recipes.query_results', query=query, page=page+1) }}">Next</a>
+  {% endif %}
+</div>
+
+{% endblock %}

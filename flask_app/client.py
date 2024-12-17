@@ -31,16 +31,12 @@ class RecipeClient(object):
         self.base_url = f"https://api.spoonacular.com/recipes/complexSearch?apiKey={api_key}&addRecipeInstructions=True&query="
         self.base_id_url = f"https://api.spoonacular.com/recipes/"
 
-    def search(self, search_string):
-        # breakpoint()
-        cached_search = read_search_cache(search_string)
-        if cached_search:
-            return cached_search.response
-        
-        search_url = self.base_url + search_string + f"&titleMatch={search_string}&number=30"
+    def search(self, search_string, page=1):
+        offset = (page - 1) * 30
+        search_url = self.base_url + search_string + f"&titleMatch={search_string}&number=30&offset={offset}"
         try:
-            resp = self.sess.get(search_url, timeout=10)  # Add a timeout
-            resp.raise_for_status()  # Raise an exception for HTTP errors
+            resp = self.sess.get(search_url, timeout=10)
+            resp.raise_for_status()
         except requests.HTTPError:
             if resp.status_code == 404:
                 print(f"API Request: HTTP {resp.status_code} - Not Found")
@@ -57,25 +53,14 @@ class RecipeClient(object):
             print(f"API Request: HTTP {resp.status_code} - See Below")
             print(e)
             raise
-        write_search_cache(search_string, resp.json())
         return resp.json()
     
     def get_recipe(self, recipe_id):
-        """
-        Use to obtain a Recipe object representing the recipe identified by
-        the supplied recipe_id
-        """
         recipe_url = self.base_id_url + f"{recipe_id}/information?apiKey={self.api_key}"
-
-        cached_recipe = read_recipe_cache(int(recipe_id))
-        if cached_recipe:
-            return Recipe(cached_recipe.response)
-
         try:
-            resp = self.sess.get(recipe_url, timeout=10)  # Add a timeout
-            resp.raise_for_status()  # Raise an exception for HTTP errors
+            resp = self.sess.get(recipe_url, timeout=10)
+            resp.raise_for_status()
             data = resp.json()
-            write_recipe_cache(int(recipe_id), resp.json())
         except requests.HTTPError:
             if resp.status_code == 404:
                 print(f"API Request: HTTP {resp.status_code} - Not Found")
@@ -102,6 +87,6 @@ if __name__ == "__main__":
 
     client = RecipeClient(os.environ.get("API_KEY"))
     recipes = client.search("pasta")
-    # find = client.get_recipe(716429)
+    find = client.get_recipe(716429)
 
 

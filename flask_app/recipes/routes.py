@@ -7,6 +7,7 @@ from .. import recipe_client
 from ..forms import RecipeReviewForm, SearchForm
 from ..models import User, RecipeReview
 from ..utils import current_time
+import math
 
 recipes = Blueprint("recipes", __name__)
 """ ************ Helper for pictures uses username to get their profile picture************ """
@@ -24,14 +25,22 @@ def index():
     form = SearchForm()
 
     if form.validate_on_submit():
-        try:
-            results = recipe_client.search(form.search_query.data)
-            return render_template("index.html", form=form, results=results["results"])
-        except Exception as e:
-            return render_template("index.html", form=form, error_msg="Search Failed")
+        return redirect(url_for("recipes.query_results", query=form.search_query.data))
 
-    default_results = read_search_cache().response
-    return render_template("index.html", form=form, results=default_results["results"])
+    return render_template("index.html", form=form)
+
+
+@recipes.route("/search-results/<query>", methods=["GET"])
+def query_results(query):
+    page = request.args.get('page', 1, type=int)
+    try:
+        results = recipe_client.search(query, page=page)
+    except ValueError as e:
+        return render_template("query.html", error_msg=str(e))
+
+    total_results = results["totalResults"]
+    total_pages = math.ceil(total_results / 30)
+    return render_template("query.html", results=results["results"], query=query, page=page, total_pages=total_pages)
 
 
 @recipes.route("/recipes/<recipe_id>", methods=["GET", "POST"])
