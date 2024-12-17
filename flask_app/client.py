@@ -81,6 +81,32 @@ class RecipeClient(object):
 
         recipe = Recipe(data)
         return recipe
+    
+    def get_random_recipes(self):
+        recipe_url = self.base_id_url + f"random?number=12&apiKey={self.api_key}"
+
+        try:
+            resp = self.sess.get(recipe_url, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+        except requests.HTTPError:
+            if resp.status_code == 404:
+                print(f"API Request: HTTP {resp.status_code} - Not Found")
+                return None
+            if resp.status_code == 402:
+                print(f"API Request: HTTP {resp.status_code} - Limit Reached")
+                raise Exception("Recipe Request Failed")
+            print(f"API Request: HTTP {resp.status_code} - Check API Key")
+            raise Exception("Recipe Request Failed")
+        except requests.exceptions.Timeout:
+            print("API Request Timed Out")
+            raise Exception("Random Recipe Retrieval Failed")
+        except requests.exceptions.RequestException as e:
+            print("API Request Error:", e)
+            raise Exception("Random Recipe Retrieval Failed")
+        
+        recipes = [Recipe(recipe) for recipe in data["recipes"]]
+        return recipes
 
 if __name__ == "__main__":
     import os

@@ -24,10 +24,16 @@ def get_b64_img(username):
 def index():
     form = SearchForm()
 
+    random_recipes = None
+    try:
+        random_recipes = recipe_client.get_random_recipes()
+    except Exception as e:
+        print(f"Error fetching random recipes: {e}")
+
     if form.validate_on_submit():
         return redirect(url_for("recipes.query_results", query=form.search_query.data))
 
-    return render_template("index.html", form=form)
+    return render_template("index.html", form=form, random_recipes=random_recipes)
 
 
 @recipes.route("/search-results/<query>", methods=["GET"])

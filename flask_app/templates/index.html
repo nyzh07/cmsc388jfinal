@@ -6,6 +6,7 @@
     {{ form.search_query(class="form-control", placeholder="Find a recipe") }}
     {{ form.submit(class="form-button") }}
   </form>
+  <h2 class="explore-title">Explore Recipes</h2>
   <div class="results-container">
     {% if form.search_query.errors %}
     <div class="error" role="alert">
@@ -21,10 +22,10 @@
     </div>
     {% endif %}
 
-    {% for result in results %}
-    <a href="{{ url_for('recipes.recipe_detail', recipe_id=result.id) }}" class="group movie-card">
-      <img src="{{ result.image }}" class="movie-card-img" alt="missing image" />
-      <h5 class="movie-card-content"> {{ result.title }} </h5>
+    {% for recipe in random_recipes %}
+    <a href="{{ url_for('recipes.recipe_detail', recipe_id=recipe.id) }}" class="group movie-card">
+      <img src="{{ recipe.image }}" class="movie-card-img" alt="missing image" />
+      <h5 class="movie-card-content"> {{ recipe.title }} </h5>
     </a>
     {% endfor %}
   </div>

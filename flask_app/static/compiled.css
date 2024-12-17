@@ -971,7 +971,7 @@ html {
 .main-title {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1.5rem;
+  margin-top: 4rem;
   margin-bottom: 1.5rem;
   /* width: 30rem; */
   text-align: center;
@@ -985,6 +985,7 @@ html {
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 4rem;
   display: flex;
   width: -moz-fit-content;
   width: fit-content;
@@ -1588,6 +1589,17 @@ html {
   color: gray;
 }
 
+.stars-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-filled, .star-empty {
+  font-size: 20px;
+  margin: 0 4px;
+}
+
 .ing label {
   color: black;
 }
@@ -1655,4 +1667,13 @@ html {
   .pagination {
     margin: 15px 0;
   }
+}
+
+.explore-title {
+  font-weight: bold;
+  color: black;
+  text-indent: 180px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
 }
