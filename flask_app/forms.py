@@ -71,5 +71,5 @@ class UpdateUsernameForm(FlaskForm):
             raise ValidationError('Username already exists. Please choose a different one.')
 
 class UpdateProfilePicForm(FlaskForm):
-    picture = FileField('New Profile Picture', validators=[InputRequired(), FileAllowed(['jpg', 'png'], 'Images Only!')])
+    picture = FileField('New Profile Picture', validators=[FileAllowed(['jpg', 'png'], 'Images Only!')])
     submit_picture = SubmitField('Update Picture')

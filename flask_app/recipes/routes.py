@@ -66,10 +66,10 @@ def recipe_detail(recipe_id):
             date=current_time(),
             recipe_id=recipe_id,
             recipe_title=result.title,
-            rating=form.rating.data
+            rating=form.rating.data,
+            image=get_b64_img(current_user.username)
         )
 
-        review.image = get_b64_img(review.commenter.username)
         review.save()
 
         return redirect(request.path)

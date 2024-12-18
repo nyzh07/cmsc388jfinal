@@ -66,7 +66,7 @@
     <ul class="review-container">
       {% for review in reviews %}
         <li class="review flex gap-2">
-          <img class="h-20 w-20 rounded-lg" src="data:image/png;base64,{{ review.image if review.image else 'default_image_base64_string' }}" alt="Profile Image" />
+          <img class="h-20 w-20 rounded-lg" src="data:image/png;base64,{{ review.image }}" alt="No Image" />
           <div class="w-full">
             <span class="review-date">{{ review.date }}</span>
             <a class="review-commenter" href="{{ url_for('recipes.user_detail', username=review.commenter.username) }}">
