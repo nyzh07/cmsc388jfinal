@@ -20,7 +20,7 @@ import os
 from .client import RecipeClient
 
 # update with your API Key
-API_KEY = '66a8760da7eb45f190efd66de93e29fe'
+API_KEY = '7a548be86024470cb53b4d4482d17b80'
 
 # do not remove these 2 lines (required for autograder to work)
 if os.getenv('API_KEY'):
