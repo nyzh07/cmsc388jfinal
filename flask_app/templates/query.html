@@ -8,9 +8,9 @@
   </div>
   {% endif %}
   {% for result in results %}
-  <a href="{{ url_for('recipes.recipe_detail', recipe_id=result.id) }}" class="group movie-card">
-    <img src="{{ result.image }}" class="movie-card-img" alt="missing image" />
-    <h5 class="movie-card-content"> {{ result.title }} </h5>
+  <a href="{{ url_for('recipes.recipe_detail', recipe_id=result.id) }}" class="group recipe-card">
+    <img src="{{ result.image }}" class="recipe-card-img" alt="missing image" />
+    <h5 class="recipe-card-content"> {{ result.title }} </h5>
   </a>
   {% endfor %}
 </div>

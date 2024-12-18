@@ -47,31 +47,31 @@ html {
   @apply cursor-pointer !bg-neutral-600/50 rounded-lg px-4 py-2 font-bold hover:!bg-neutral-500 duration-300 active:duration-75 active:translate-y-1 active:!bg-neutral-400;
 }
 
-.movie-card {
+.recipe-card {
   @apply flex justify-start flex-col cursor-pointer hover:bg-neutral-700 rounded-2xl duration-300 w-96;
 }
 
-.movie-card-img {
+.recipe-card-img {
   @apply rounded-lg group-hover:scale-90 group-hover:-translate-y-1.5 duration-150 aspect-[2/3];
 }
 
-.movie-card-content {
+.recipe-card-content {
   @apply mt-2 flex flex-col p-4 font-bold group-hover:scale-90 group-hover:-translate-y-4 duration-150;
 }
 
-.movie-container {
+.recipe-container {
   @apply px-6 text-neutral-100 flex flex-col md:flex-row md:justify-between gap-4;
 }
 
-.movie-info {
+.recipe-info {
   @apply flex flex-col gap-3 md:w-96;
 }
 
-.movie-title {
+.recipe-title {
   @apply md:absolute md:top-6 md:left-40 text-2xl flex flex-col md:flex-row font-bold items-center;
 }
 
-.movie-date {
+.recipe-date {
   @apply md:ml-2 font-normal text-lg block text-neutral-400;
 }
 

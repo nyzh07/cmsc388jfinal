@@ -1167,7 +1167,7 @@ html {
   transition-duration: 75ms;
 }
 
-.movie-card {
+.recipe-card {
   display: flex;
   width: 24rem;
   cursor: pointer;
@@ -1180,11 +1180,11 @@ html {
   border: 0.2rem solid rgb(227, 227, 227);
 }
 
-.movie-card:hover {
+.recipe-card:hover {
   --tw-bg-opacity: 1;
 }
 
-.movie-card-img {
+.recipe-card-img {
   margin: 1rem;
   border-radius: 0.5rem;
   transition-duration: 150ms;
@@ -1192,14 +1192,14 @@ html {
   
 }
 
-.group:hover .movie-card-img {
+.group:hover .recipe-card-img {
   --tw-translate-y: -0.375rem;
   --tw-scale-x: .9;
   --tw-scale-y: .9;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.movie-card-content {
+.recipe-card-content {
   margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -1208,86 +1208,12 @@ html {
   transition-duration: 150ms;
 }
 
-.group:hover .movie-card-content {
+.group:hover .recipe-card-content {
   /* --tw-translate-y: -1rem;
   --tw-scale-x: .9;
   --tw-scale-y: .9; */
   color: red;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.movie-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  --tw-text-opacity: 1;
-  color: rgb(245 245 245 / var(--tw-text-opacity));
-}
-
-@media (min-width: 768px) {
-  .movie-container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-.movie-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .movie-info {
-    width: 24rem;
-  }
-}
-
-.movie-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
-}
-
-@media (min-width: 768px) {
-  .movie-title {
-    position: absolute;
-    top: 1.5rem;
-    left: 10rem;
-    flex-direction: row;
-  }
-}
-
-.movie-date {
-  display: block;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 400;
-  --tw-text-opacity: 1;
-  color: rgb(163 163 163 / var(--tw-text-opacity));
-}
-
-@media (min-width: 768px) {
-  .movie-date {
-    margin-left: 0.5rem;
-  }
-}
-
-.movie-img {
-  margin-bottom: 0.5rem;
-  width: 100%;
-  border-radius: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .movie-img {
-    width: 24rem;
-  }
 }
 
 .reviews {

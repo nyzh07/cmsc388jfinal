@@ -23,9 +23,9 @@
     {% endif %}
 
     {% for random in random_recipes %}
-    <a href="{{ url_for('recipes.recipe_detail', recipe_id=random.recipe_id) }}" class="group movie-card">
-      <img src="{{ random.image }}" class="movie-card-img" alt="missing image" />
-      <h5 class="movie-card-content"> {{ random.title }} </h5>
+    <a href="{{ url_for('recipes.recipe_detail', recipe_id=random.recipe_id) }}" class="group recipe-card">
+      <img src="{{ random.image }}" class="recipe-card-img" alt="missing image" />
+      <h5 class="recipe-card-content"> {{ random.title }} </h5>
     </a>
     {% endfor %}
   </div>

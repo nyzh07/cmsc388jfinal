@@ -2,7 +2,6 @@ import base64,io
 from io import BytesIO
 from flask import Blueprint, render_template, url_for, redirect, request, flash
 from flask_login import current_user
-from flask_app.cache import read_search_cache
 from .. import recipe_client
 from ..forms import RecipeReviewForm, SearchForm
 from ..models import User, RecipeReview

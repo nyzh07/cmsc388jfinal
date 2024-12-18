@@ -1,7 +1,6 @@
 import requests
 import math
 
-from flask_app.cache import read_recipe_cache, read_search_cache, write_recipe_cache, write_search_cache
 class Recipe(object):
     def __init__(self, json, detailed=False):
         self.recipe_id = json["id"]
